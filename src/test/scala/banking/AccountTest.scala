@@ -16,4 +16,9 @@ class AccountTest extends FunSuite with BeforeAndAfter {
   test("initial account amount is zero") {
     assert(acc.amount.amount == 0)
   }
+
+  test("filters operations journal by operation type") {
+
+  }
+
 }

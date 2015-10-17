@@ -3,6 +3,8 @@ package banking
 import java.text.SimpleDateFormat
 import java.util.Date
 
+import banking.StatementType.StatementType
+
 import scala.collection.mutable
 
 class Account {
@@ -17,4 +19,7 @@ class Account {
   }
 
   private def getCurrentDate():String = dateFormat.format(new Date())
+
+  def fileterByDepositType(statementType: StatementType): List[Statement] = accountJournal.filter(x => x.statementType != statementType).toList
+
 }

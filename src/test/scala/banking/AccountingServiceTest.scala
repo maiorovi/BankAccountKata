@@ -54,6 +54,4 @@ class AccountingServiceTest extends FunSuite with BeforeAndAfter {
       service.transfer(acc, other, Money(15))
     }
   }
-
-
 }
