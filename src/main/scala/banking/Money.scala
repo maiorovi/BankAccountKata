@@ -5,6 +5,11 @@ class Money(val amount: Double) {
   def <(mon: Money):Boolean = amount < mon.amount
   def -(mon: Money):Option[Money] = if (amount >= mon.amount) Option(new Money(amount - mon.amount)) else Option.empty[Money]
   def this(amnt: MoneyAmount) = this(amnt.amount)
+
+  override def equals(obj: Any) = obj match {
+    case that: Money => that.amount == this.amount;
+    case _ => false;
+  }
 }
 
 object Money {

@@ -1,24 +1,20 @@
 package banking
 
-class Account {
-  var amount:Money = Money(0.0)
+import java.text.SimpleDateFormat
+import java.util.Date
 
+import scala.collection.mutable
+
+class Account {
+  private[this] val dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+  var amount:Money = Money(0.0)
+  var accountJournal:mutable.MutableList[Statement] = mutable.MutableList()
+  
   def this(initialAmount: Money) {
     this()
     amount = new Money(initialAmount.amount);
+    accountJournal += new Statement(getCurrentDate, initialAmount, StatementType.DEPOSIT)
   }
 
-  def add(mon: Money): Unit =  amount += mon
-
-  def withDraw(mon: Money): Unit = {
-    amount = (amount - mon).getOrElse {
-      throw new NotEnoughMoneyException
-    }
-  }
-
-  def transferTo(acc: Account, amount: MoneyAmount): Unit = {
-    val money = Money(amount)
-    this.withDraw(money)
-    acc.add(money)
-  }
+  private def getCurrentDate():String = dateFormat.format(new Date())
 }
